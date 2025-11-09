@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1 class="text-xl font-semibold mb-4">Riwayat milik: {{ nama }}</h1>
+
+    <!-- history item -->
+    {% if data %}
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    {% for r in data %}
+    <div class="bg-white p-3 rounded shadow flex flex-col">
+        
+        <div class="flex justify-between mb-2 text-sm text-gray-500">
+        <div>{{ r.waktu }}</div>
+        <div class="border px-2 py-0.5 text-xs rounded">{{ r.metode }}</div>
+        </div>
+
+        <!-- gambar diberi height fixed supaya tombol selalu di bawah -->
+        <div class="grid grid-cols-2 gap-2 mb-3">
+        <div>
+            <p class="text-xs mb-1">Asli</p>
+            <div class="h-40 overflow-hidden flex items-center justify-center bg-gray-100 rounded">
+            <img src="{{ url_for('static', filename=r.ori) }}" class="max-h-full object-contain">
+            </div>
+        </div>
+        <div>
+            <p class="text-xs mb-1">Hasil</p>
+            <div class="h-40 overflow-hidden flex items-center justify-center bg-gray-100 rounded">
+            <img src="{{ url_for('static', filename=r.hasil) }}" class="max-h-full object-contain">
+            </div>
+        </div>
+        </div>
+
+        <!-- tombol hapus item PAKU DI BAWAH -->
+        <a href="{{ url_for('delete_item', id=r.id, nama=nama) }}"
+        class="text-xs bg-red-600 text-white px-2 py-2 rounded text-center mt-auto w-full">
+        Hapus Item Ini
+        </a>
+
+    </div>
+    {% endfor %}
+    </div>
+    {% else %}
+    <div class="bg-white p-4 rounded shadow">
+    belum ada riwayat
+    </div>
+    {% endif %}
+
+
+    <!-- Button Grup -->
+    <div class="mt-4 space-y-2">
+    <a href="{{ url_for('upload',nama=nama) }}" class="bg-black text-white px-4 py-2 rounded block w-max">
+        Proses Baru
+    </a>
+
+    <a href="{{ url_for('delete_history', nama=nama) }}" class="bg-red-600 text-white px-4 py-2 rounded block w-max">
+        Hapus Semua Riwayat
+    </a>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- Judul halaman input nama -->
+    <h1 class="text-2xl font-bold mb-4">Masukkan Nama</h1>
+
+    <!-- Form input nama pengguna -->
+    <form action="{{ url_for('upload') }}" method="get" class="bg-white p-4 rounded shadow space-y-4">
+    <div>
+        <label class="block text-sm mb-1">Nama</label>
+        <input type="text" name="nama" required class="border w-full px-3 py-2 rounded">
+    </div>
+    <button class="bg-black text-white px-4 py-2 rounded">Lanjut</button>
+    </form>
+
+{% endblock %}

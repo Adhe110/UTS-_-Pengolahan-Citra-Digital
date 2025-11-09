@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <!-- // Form Upload Gambar dan Pilih Metode -->
+    <form action="{{ url_for('process') }}" method="post" enctype="multipart/form-data" class="bg-white p-4 rounded shadow space-y-4">
+
+        <p class="text-black-600 mb-1">Silahkan upload gambar dan pilih metode.</p>
+    <input type="hidden" name="nama" value="{{ nama }}">
+
+    <div>
+        <label class="block text-sm mb-1">Pilih Gambar</label>
+        <input type="file" name="file" accept="image/*" required>
+    </div>
+
+    <div>
+        <label class="block text-sm mb-1">Metode</label>
+        <select name="method" class="border w-full px-3 py-2 rounded">
+        {% for v,l in methods %}
+        <option value="{{ v }}">{{ l }}</option>
+        {% endfor %}
+        </select>
+    </div>
+
+    <div class="flex gap-2">
+        <button class="bg-black text-white px-4 py-2 rounded">Proses</button>
+        <a href="{{ url_for('history',nama=nama) }}" class="border px-4 py-2 rounded">Riwayat</a>
+    </div>
+    </form>
+
+{% endblock %}

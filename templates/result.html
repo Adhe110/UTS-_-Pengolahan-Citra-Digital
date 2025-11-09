@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h1 class="text-xl font-semibold mb-4">Hasil Metode: {{ metode }}</h1>
+
+    <!-- Grid untuk menampilkan gambar original & hasil -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <div class="bg-white p-3 rounded shadow">
+        <p class="font-medium mb-2">Original</p>
+        <img src="{{ ori }}" class="w-full border rounded">
+    </div>
+    <div class="bg-white p-3 rounded shadow">
+        <p class="font-medium mb-2">Processed</p>
+        <img src="{{ hasil }}" class="w-full border rounded">
+    </div>
+    </div>
+
+    <!-- Button Grup -->
+    <div class="mt-4 flex gap-2">
+    <a href="{{ url_for('upload',nama=nama) }}" class="bg-black text-white px-4 py-2 rounded">Proses Lagi</a>
+    <a href="{{ url_for('history',nama=nama) }}" class="border px-4 py-2 rounded">Riwayat</a>
+    </div>
+
+{% endblock %}
